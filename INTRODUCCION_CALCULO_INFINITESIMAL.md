@@ -21,6 +21,15 @@ Estudia:
 * Velocidades
 * Crecimiento y decrecimiento de funciones
 
+Definición formal de la derivada (Límite):
+
+$$f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
+
+Interpretación:
+* $h$ representa un cambio infinitesimalmente pequeño en la variable independiente.
+* Medimos la tasa a la que cambia el valor de la función con respecto a ese cambio.
+* Al hacer que $h$ tienda a cero, obtenemos la pendiente exacta de la recta tangente en un punto.
+
 Pregunta principal:
 
 > ¿Qué tan rápido cambia una variable respecto a otra?
@@ -35,6 +44,15 @@ Estudia:
 * Áreas bajo curvas
 * Volúmenes
 * Cantidades acumuladas
+
+Definición formal (Integral Definida):
+
+$$\int_{a}^{b} f(x) \, dx$$
+
+Interpretación:
+* Sumamos infinitas áreas elementales sumamente pequeñas ($f(x) \cdot dx$).
+* El resultado representa la acumulación neta de la cantidad en el intervalo $[a, b]$.
+* En Python, aproximamos esta suma usando métodos numéricos como la Regla del Trapecio.
 
 Pregunta principal:
 
@@ -67,13 +85,30 @@ derivada = lambda y: np.diff(y) / np.diff(x)
 
 La derivada se aproxima mediante:
 
-Δy / Δx
+$$\frac{\Delta y}{\Delta x}$$
 
 donde:
 
 ```text
 pendiente = cambio vertical / cambio horizontal
 ```
+
+En Python no calculamos el límite real, sino una aproximación numérica basada en diferencias finitas.
+
+---
+
+## 💡 ¿Por qué la derivada tiene 999 elementos y no 1000?
+
+Esta es una pregunta clásica de examen o clase.
+
+Dado que `np.diff()` calcula la diferencia entre pares de elementos consecutivos:
+* Si tienes $1000$ puntos en el arreglo `x`, tendrás exactamente $999$ intervalos (diferencias) entre ellos.
+* Por lo tanto:
+  ```python
+  len(x)  # Retorna 1000
+  len(derivada(funcion(x)))  # Retorna 999
+  ```
+* Al graficar, siempre debemos recortar el eje x para emparejar dimensiones: `plt.plot(x[1:], derivada(y))` o `plt.plot(x[:-1], derivada(y))`.
 
 ---
 
@@ -445,17 +480,49 @@ Si:
 f(x) = sin(x²)
 ```
 
-Entonces:
+Entonces, aplicando la **Regla de la Cadena**:
 
-```text
-f'(x) = cos(x²) · 2x
-```
+$$\frac{d}{dx}\sin(x^2) = \cos(x^2) \cdot 2x$$
 
-La derivada de la función externa se multiplica por la derivada de la función interna.
+### 🧠 Pregunta clásica: ¿Por qué aparece el $2x$?
+Porque la regla de la cadena establece que la derivada de una función compuesta es la derivada de la función externa evaluada en la interna, multiplicada por la derivada de la función interna:
+1. **Función externa:** $g(u) = \sin(u) \implies g'(u) = \cos(u)$
+2. **Función interna:** $u(x) = x^2 \implies u'(x) = 2x$
+3. **Multiplicación:** $\cos(x^2) \cdot 2x$
 
 ---
 
 # Conceptos Clave para Recordar
+
+## 🚗 Relación Física: Posición, Velocidad y Aceleración
+
+Un truco mental sumamente útil para entender la derivación y la integración es su aplicación directa en la física del movimiento:
+
+```text
+Posición s(t)
+   ↓ derivar (tasa de cambio de posición)
+Velocidad v(t)
+   ↓ derivar (tasa de cambio de velocidad)
+Aceleración a(t)
+```
+
+Y el proceso inverso es la integración:
+
+```text
+Aceleración a(t)
+   ↓ integrar (acumulación de aceleración)
+Velocidad v(t)
+   ↓ integrar (acumulación de velocidad)
+Posición s(t)
+```
+
+### 📈 Ejemplo Práctico Real:
+Supongamos que un objeto se mueve con una velocidad dependiente del tiempo:
+* **Velocidad:** $v(t) = 3t^2$
+* **Aceleración (Derivada):** $a(t) = \frac{d}{dt}(3t^2) = 6t$ (mide el cambio de la velocidad en cada instante).
+* **Posición recorrida (Integral):** $s(t) = \int 3t^2 \, dt = t^3 + C$ (mide la distancia acumulada recorrida).
+
+---
 
 ## Derivar
 
@@ -497,37 +564,18 @@ exp(x²)
 
 ---
 
-# Resumen Ejecutivo
+# ⚡ Resumen de 30 Segundos Antes de entrar a Clase
 
-Derivar:
-
-```text
-Cambio
-Pendiente
-Velocidad
-```
-
-Integrar:
-
-```text
-Acumulación
-Área
-Cantidad total
-```
-
-Regla de la cadena:
-
-```text
-Función dentro de función
-```
-
-Python nos permite aproximar estos conceptos usando:
-
-```python
-np.diff()
-np.cumsum()
-numpy
-matplotlib
-```
-
-y visualizar gráficamente cómo se comportan las funciones, sus derivadas y sus integrales.
+* **Derivada:**
+  * Mide el cambio instantáneo y la pendiente de la curva.
+  * Definición formal: $f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$.
+  * En Python: aproximada numéricamente con `np.diff(y) / np.diff(x)`.
+  * **Dimensión:** Tiene $N-1$ elementos debido a la diferencia entre pares consecutivos.
+* **Integral:**
+  * Mide la acumulación total y el área bajo la curva.
+  * Definición formal: $\int_a^b f(x) \, dx$.
+  * En Python: acumulada progresivamente mediante la Regla del Trapecio y `np.cumsum()`.
+* **Regla de la Cadena:**
+  * Se aplica cuando hay una función dentro de otra (composición).
+  * Fórmula: $\frac{d}{dx} f(g(x)) = f'(g(x)) \cdot g'(x)$ (Derivada exterior $\times$ Derivada interior).
+  * Ejemplo: $\frac{d}{dx}\sin(x^2) = \cos(x^2) \cdot 2x$.
