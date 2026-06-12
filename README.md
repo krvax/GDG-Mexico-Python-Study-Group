@@ -1,54 +1,65 @@
 # 🐍 GDG Mexico Python Study Group
 
-Bienvenido al repositorio oficial del **Grupo de Estudio de Python de GDG México**. 
+> **Aprendemos matemáticas, programación e IA con proyectos reales y comunidad.**
 
 Este espacio está diseñado para democratizar el aprendizaje de la programación, la ciencia de datos y el pensamiento cuantitativo, utilizando **Python** como herramienta principal para traducir conceptos abstractos en código ejecutable y visualizaciones interactivas.
 
 ---
 
-## 🎯 Objetivo del Grupo de Estudio
+## 🎯 ¿Por qué existe este proyecto?
 
-Aprender y enseñar programación no solo como sintaxis, sino como una herramienta para resolver problemas cuantitativos. Conectamos tres disciplinas esenciales:
-* **Matemáticas e Intuición:** Entender la teoría detrás del cambio (cálculo), la incertidumbre (probabilidad/estadística) y las estructuras (álgebra lineal).
-* **Visualización:** Graficar comportamientos y patrones para desarrollar intuición visual.
-* **Programación:** Escribir código limpio, modular y reproducible usando el ecosistema de Python (NumPy, Matplotlib, Jupyter).
+Muchas veces la enseñanza tradicional separa las matemáticas de la programación. Se estudian derivadas en papel sin entender cómo se aplican en el desarrollo de software, o se aprende a programar usando ejemplos abstractos (como sistemas de facturación de tiendas) que no generan interés.
+
+Este grupo de estudio rompe esa desconexión:
+1. **Conectamos teoría y código:** Aprendemos cálculo, estadística y álgebra programando sus conceptos en Python.
+2. **Usamos datos que importan:** Analizamos datos reales de la comunidad (como las estadísticas de juego de **Cóatl Baloncesto**) en lugar de conjuntos de datos ficticios.
+3. **Construimos en comunidad:** Fomentamos un ecosistema de aprendizaje colaborativo respaldado por mentores del ecosistema tecnológico y deportivo.
 
 ---
 
 ## 🗺️ Ruta de Aprendizaje (Curriculum)
 
-El contenido está estructurado de forma incremental, desde los fundamentos de la lógica hasta el modelado avanzado:
+El contenido está estructurado de forma incremental en la carpeta [courses/](file:///home/mcarvaj/src/learning/courses/gdg-python-study-group/courses):
 
-1. **📦 Fundamentos de Programación:** Variables, tipos de datos, operadores, y funciones UDF (definidas por el usuario) y lambdas (anónimas).
-2. **🔄 Estructuras de Control de Flujo:** Condicionales, bucles (`for`/`while`), listas de comprensión y estructuras de control lógico.
-3. **📘 Cálculo Infinitesimal:** Derivación numérica (diferencias finitas), integración numérica (Regla del Trapecio) y Regla de la Cadena.
-4. **📊 Probabilidad y Estadística (Próximamente):** Distribuciones de probabilidad, teoremas de límites y análisis exploratorio de datos (EDA).
-5. **📈 Modelación cuantitativa y Ciencia de Datos (Próximamente):** Introducción al análisis de datos deportivos y modelado actuarial.
-
----
-
-## 📖 Cómo usar los materiales
-
-En cada sesión de la ruta de aprendizaje encontrarás:
-
-* **Hojas de Trabajo para Alumnos (`*_Clase.ipynb`):** Notebooks de Jupyter interactivos con explicaciones conceptuales y secciones de código en blanco para practicar y resolver durante la clase.
-* **Enlace a la Solución (Colab):** Dentro de cada notebook de clase se incluye un enlace directo a la solución completa en Google Colab para auto-evaluación.
-* **Guías de Estudio en Markdown (`INTRODUCCION_*.md`):** Resúmenes ejecutivos que contienen la teoría formal (fórmulas límites/integrales), intuición física (como la relación Posición-Velocidad-Aceleración), y tips rápidos para repasar conceptos clave en 30 segundos.
+1. **📦 [python/](file:///home/mcarvaj/src/learning/courses/gdg-python-study-group/courses/python):** Variables, tipos de datos, operadores, funciones UDF y expresiones lambda.
+2. **🔄 [control-flow/](file:///home/mcarvaj/src/learning/courses/gdg-python-study-group/courses/control-flow):** Condicionales, bucles (`for`/`while`), listas de comprensión y control de flujo lógico.
+3. **📘 [calculo/](file:///home/mcarvaj/src/learning/courses/gdg-python-study-group/courses/calculo):** Derivación numérica (diferencias finitas), integración (Regla del Trapecio) y sus guías conceptuales en [INTRODUCCION_CALCULO_INFINITESIMAL.md](file:///home/mcarvaj/src/learning/courses/gdg-python-study-group/courses/calculo/INTRODUCCION_CALCULO_INFINITESIMAL.md).
+4. **📊 04-estadistica (Próximamente):** Distribuciones de probabilidad, análisis de varianza y teorema del límite central.
+5. **📈 05-visualizacion (Próximamente):** Generación de tableros gráficos usando Matplotlib, Seaborn y Plotly.
 
 ---
 
-## 💻 Prerrequisitos
+## 🏀 Proyectos Prácticos
 
-Para ejecutar los notebooks de forma local, necesitas:
-* **Python 3.10 o superior**
-* Instalar las dependencias de ciencia de datos estándar:
-  ```bash
-  pip install numpy matplotlib jupyter
-  ```
-* Alternativamente, puedes hacer clic en el botón **"Open In Colab"** al inicio de cada notebook para ejecutar el código directamente en tu navegador sin instalar nada.
+La teoría se consolida construyendo proyectos aplicados en la carpeta [projects/](file:///home/mcarvaj/src/learning/courses/gdg-python-study-group/projects):
+
+* **[basketball-analytics/](file:///home/mcarvaj/src/learning/courses/gdg-python-study-group/projects/basketball-analytics):** Análisis cuantitativo de tiros y rendimiento del club deportivo comunitario **Cóatl**.
 
 ---
 
-## 🤝 Contribuciones
+## 👥 Comunidad y Mentores
 
-Este es un proyecto comunitario abierto. Si encuentras un error en las fórmulas, quieres mejorar la didáctica de un ejercicio o proponer un nuevo tema en la ruta, ¡los Pull Requests son bienvenidos!
+El proyecto es mantenido por personas dedicadas a la tecnología y al impacto social. Conoce más en:
+* [Perfiles de los Mentores](file:///home/mcarvaj/src/learning/courses/gdg-python-study-group/community/mentors.md): Quiénes lideran y estructuran el material.
+* [Registro de Impacto Social](file:///home/mcarvaj/src/learning/courses/gdg-python-study-group/community/impact.md): Métricas de participación y metas comunitarias.
+* [Trazabilidad de Agradecimientos](file:///home/mcarvaj/src/learning/courses/gdg-python-study-group/community/acknowledgements.md): Los orígenes e inspiración de nuestro material de estudio.
+
+---
+
+## 🤝 Reconocimientos
+
+Este proyecto forma parte de un proceso continuo de aprendizaje impulsado por comunidades tecnológicas abiertas.
+
+Reconocemos especialmente a la comunidad **GDG AI Condesa** por proporcionar espacios de aprendizaje práctico en Python, matemáticas aplicadas e inteligencia artificial.
+
+Agradecimiento especial a **Geovanni Zepeda** por compartir material educativo y fomentar el aprendizaje colaborativo.
+
+---
+
+## 🌐 Comunidad
+
+* [GDG AI Condesa](https://gdg.community.dev/gdg-ai-condesa/)
+* [Google Developer Groups México](https://gdg.community.dev/mexico/)
+* Hands-On de Python
+* Hands-On de Cálculo Infinitesimal
+
