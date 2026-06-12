@@ -1,175 +1,118 @@
-# 📓 Clase: Cálculo Infinitesimal con Python
+# 📓 Cálculo Infinitesimal — Notas de clase
 
-## Objetivo
+## Primera revelación
 
-Visualizar funciones, derivadas y antiderivadas mediante aproximaciones numéricas usando NumPy y Matplotlib.
+La derivada y la integral no son magia.
 
----
-
-# Derivación numérica
-
-La derivada se aproximó usando diferencias finitas entre muestras consecutivas.
-
-Idea:
+La derivada es:
 
 ```text
-pendiente ≈ cambio en y / cambio en x
+¿qué tan rápido cambia?
 ```
 
-Observación:
-
-* La derivada tiene una muestra menos que la función original.
-* `np.diff()` reduce la longitud del arreglo.
-
----
-
-# Integración numérica
-
-La antiderivada se aproximó usando el método del trapecio.
-
-Idea:
+La integral es:
 
 ```text
-área total
-=
-suma de áreas de trapecios
-```
-
-Implementación conceptual:
-
-```text
-trapecio + trapecio + trapecio + ...
-```
-
-mediante:
-
-```python
-np.cumsum(...)
+¿cuánta área llevo acumulada?
 ```
 
 ---
 
-# Mediana y constante de integración
+## Método del trapecio
 
-Descubrimiento importante de la clase.
-
-La antiderivada calculada numéricamente puede quedar desplazada verticalmente.
-
-Se utilizó:
-
-```python
-np.median(...)
-```
-
-para recentrar la gráfica.
-
-Observación:
+La computadora integra así:
 
 ```text
-Restar la mediana NO cambia la forma.
-Solo cambia la posición vertical.
+trapecio
++
+trapecio
++
+trapecio
++
+...
 ```
 
-Conexión matemática:
+hasta aproximar la integral.
 
-```text
-∫f(x)dx = F(x) + C
-```
+Momento importante:
 
-La mediana actúa como una forma práctica de ajustar la constante de integración para visualizar mejor la curva.
+> "Ah, por eso existe `np.cumsum()`"
 
 ---
 
-# Aprender a observar
+## ¿Por qué restamos la mediana?
 
-Idea repetida por el profesor.
-
-Antes de aplicar fórmulas:
+Confusión inicial:
 
 ```text
-Observar comportamiento.
-Observar patrones.
-Observar composición.
+¿Qué demonios tiene que ver estadística con cálculo?
 ```
 
-La gráfica puede revelar información antes que el álgebra.
+Descubrimiento:
+
+```text
+No corrige la integral.
+Corrige la visualización.
+```
+
+Más precisamente:
+
+```text
+ajusta la constante de integración
+```
+
+para que la gráfica quede centrada.
+
+Momento de iluminación:
+
+> "¡¡¡Ya entendí por qué usan la mediana!!!"
 
 ---
 
-# Regla de la cadena
+## Frase del sensei
 
-Idea central:
-
-```text
-Derivar la función exterior.
-Multiplicar por la derivada de la función interior.
-```
-
-Pregunta clave:
-
-```text
-¿Qué está afuera?
-¿Qué está adentro?
-```
+> "Tenemos que aprender a observar."
 
 ---
 
-# Composición de funciones
+## Observación vs memorización
 
-Ejemplo conceptual:
-
-```text
-entrada
-↓
-g(x)
-↓
-resultado
-↓
-f(...)
-↓
-resultado final
-```
-
-La notación:
+Antes:
 
 ```text
-f(g(x))
+Quiero la fórmula.
 ```
 
-puede implementarse directamente en código:
+Después:
 
-```python
-f(g(x))
+```text
+¿Qué estoy viendo?
 ```
 
 ---
 
-# Observaciones de funciones estudiadas
+## Regla de la cadena
 
-## x²
+La pregunta no es:
 
 ```text
-Función      -> parábola
-Derivada     -> recta
-Antiderivada -> cúbica
+¿Cómo derivo?
 ```
 
-Permite visualizar claramente el Teorema Fundamental del Cálculo.
+La pregunta es:
+
+```text
+¿Quién está afuera?
+¿Quién está adentro?
+```
 
 ---
 
-## sin(x)
+### Caso 1
 
 ```text
-Derivada     -> cos(x)
-Antiderivada -> -cos(x) + C
+sin²(x)
 ```
-
-La gráfica confirma visualmente ambas relaciones.
-
----
-
-## sin²(x)
 
 Observación:
 
@@ -178,11 +121,13 @@ afuera = cuadrado
 adentro = seno
 ```
 
-Primer ejemplo claro de composición.
-
 ---
 
-## sin(x²)
+### Caso 2
+
+```text
+sin(x²)
+```
 
 Observación:
 
@@ -191,59 +136,153 @@ afuera = seno
 adentro = cuadrado
 ```
 
-No es la misma función que:
+---
+
+## Momento "a la madre"
+
+Descubrimiento:
 
 ```text
 sin²(x)
 ```
 
-aunque visualmente se parezcan en la escritura.
+y
+
+```text
+sin(x²)
+```
+
+NO son la misma función.
 
 ---
 
-# Serie de Taylor
+## Serie de Taylor
 
-Aparece porque algunas integrales no tienen una antiderivada elemental simple.
+Reacción oficial:
 
-Observación importante:
+> "¿Qué demonios acaba de pasar?"
+
+Aprendizaje:
 
 ```text
-La computadora puede integrar numéricamente
-aunque no exista una fórmula elemental sencilla.
+Hay funciones cuya integral
+no tiene una fórmula elemental simple.
+```
+
+Entonces aparecen:
+
+```text
+Series infinitas
+Taylor
+Fresnel
+Brujería matemática
 ```
 
 ---
 
-# Visualización
+## Graficar por separado
 
-Descubrimiento práctico de la sesión:
+Petición oficial del alumno:
 
-Graficar función, derivada y antiderivada juntas puede ocultar patrones.
+> "Sensei, pase el código para verlas separadas."
 
-Mejor estrategia:
+Resultado:
+
+### Función
+
+Observación:
 
 ```text
-1 gráfica por comportamiento
+La frecuencia aumenta.
 ```
-
-Beneficios:
-
-* Más claridad.
-* Más observación.
-* Menos dependencia del color.
-* Más accesible (especialmente útil siendo daltónico).
 
 ---
 
-# Frase de la clase
+### Derivada
 
-> "Tenemos que aprender a observar."
-
-Y la evidencia fue clara:
+Observación:
 
 ```text
-Cuando se separaron las gráficas,
-los patrones aparecieron inmediatamente.
+Parece un embudo.
 ```
 
-Ese último punto vale oro porque no es solamente cálculo; también es análisis de datos, ingeniería y observabilidad. 🚀
+porque aparece:
+
+```text
+2x
+```
+
+---
+
+### Antiderivada
+
+Observación:
+
+```text
+Oscila y parece estabilizarse.
+```
+
+---
+
+## Momento ingeniería
+
+Pregunta espontánea:
+
+> "¿Eso parece un filtro pasa banda?"
+
+Respuesta:
+
+```text
+No exactamente.
+```
+
+Pero sí se parece a una señal tipo:
+
+```text
+chirp
+```
+
+donde la frecuencia aumenta con el tiempo.
+
+---
+
+## Descubrimiento inesperado
+
+Separar las gráficas fue más útil que verlas juntas.
+
+Regla para recordar:
+
+```text
+Si una gráfica es confusa,
+haz varias gráficas simples.
+```
+
+---
+
+## Nota personal
+
+Soy daltónico.
+
+Ver:
+
+```text
+función
++
+derivada
++
+antiderivada
+```
+
+en una sola gráfica es una experiencia religiosa no necesariamente agradable.
+
+---
+
+## Conclusión de la clase
+
+La mejor frase no fue una fórmula.
+
+Fue:
+
+> "Aprender a observar."
+
+Porque las respuestas empezaron a aparecer cuando dejamos de perseguir fórmulas y empezamos a mirar qué estaba haciendo cada curva. 🚀📈😄
