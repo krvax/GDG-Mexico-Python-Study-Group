@@ -1,8 +1,13 @@
 # 📘 Hands-On: Introducción al Cálculo Infinitesimal con Python
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1I-1pCYaE8aKC3GhsKTyEFUUEtzGrHryh?usp=sharing)
+[![Solución en Colab](https://img.shields.io/badge/Colab-Soluci%C3%B3n-green?logo=googlecolab)](https://colab.research.google.com/drive/1IJHeriB5SgrPo4vDwVXHlFy-1VNjWwdD?usp=sharing)
+
 ## Objetivo
 
 Aprender los conceptos fundamentales del cálculo diferencial e integral utilizando Python, NumPy y Matplotlib.
+
+Una vez visto el tema **Cálculo Infinitesimal**, se proporciona esta guía y su correspondiente notebook de práctica para que el alumnado pueda aplicar los conceptos mediante programación en Python.
 
 ---
 
@@ -175,6 +180,64 @@ def visualizacion(y, dy, sy):
     plt.legend(loc='upper left')
     plt.grid()
     plt.show()
+```
+
+---
+
+# Apuntes de Código Extra (Sintaxis de Python)
+
+Antes de programar las funciones matemáticas, es útil recordar algunos conceptos de sintaxis en Python que permiten simplificar y optimizar el código (códigos lineales):
+
+## 1. Operador Ternario (Sentencias en una línea)
+Permite reducir la estructura de un `if-else` tradicional a una sola línea de código:
+
+```python
+edad = 17
+
+# Estructura tradicional
+if edad >= 18:
+    print('Mayor de edad')
+else:
+    print('Menor de edad')
+
+# Estructura simplificada con operador ternario
+print('Mayor de edad') if edad >= 18 else print('Menor de edad')
+```
+
+## 2. Comprensión de Listas (List Comprehension)
+Permite construir listas de manera más compacta y eficiente sin necesidad de declarar un bucle `for` tradicional con `.append()`:
+
+```python
+# Estructura tradicional
+lista = []
+for i in range(1, 6):
+    lista.append(i)
+print(lista)
+
+# Estructura simplificada
+comprension = [i for i in range(1, 6)]
+print(comprension)
+```
+
+## 3. Funciones Anónimas (Lambda)
+Permiten declarar funciones simples en una sola línea sin necesidad de usar la palabra clave `def`. Son sumamente útiles para definir funciones matemáticas directas:
+
+```python
+# Función tradicional con return
+def suma_return(x = 2, y = 3):
+    return x + y
+
+# Equivalente con lambda
+suma_return = lambda x = 2, y = 3: x + y
+print(suma_return())
+
+# Función tradicional con print
+def suma_print(x = 2, y = 3):
+    print(x + y)
+
+# Equivalente con lambda
+suma_print = lambda x = 2, y = 3: print(x + y)
+suma_print()
 ```
 
 ---
@@ -429,66 +492,95 @@ Por eso es necesario limitar el eje Y.
 
 # Composición de Funciones (Regla de la Cadena)
 
-La regla de la cadena se utiliza cuando una función contiene otra función.
+Una función composición tiene la forma:
 
-Ejemplo:
+$$(g \circ f)(x) = g(f(x)) \implies g(f(x))' = g'(f(x))f'(x)$$
 
-```python
-np.sin(x**2)
-```
-
-Flujo:
-
-```text
-x
-↓
-x²
-↓
-sin()
-```
+Donde se aplica cuando una función contiene otra función (función interna y externa).
 
 ---
 
-## Ejemplo
+## Ejemplo 1: $g(f(x)) = \sin^2(x)$
+
+En esta función, la potencia al cuadrado es la función externa, y la función seno es la función interna:
+* **Función externa:** $g(u) = u^2$
+* **Función interna:** $u(x) = \sin(x)$
+
+### Código
 
 ```python
-def funcion_compuesta(x):
+def funcion_compuesta_1(x):
+    return np.sin(x)**2
+```
+
+```python
+f_compuesta_1 = funcion_compuesta_1(x)
+df_compuesta_1 = derivada(f_compuesta_1)
+sf_compuesta_1 = antiderivada(f_compuesta_1)
+
+visualizacion(
+    f_compuesta_1,
+    df_compuesta_1,
+    sf_compuesta_1
+)
+```
+
+### Derivada Teórica
+
+Aplicando la **Regla de la Cadena**:
+
+$$\frac{d}{dx}\sin^2(x) = 2\sin(x) \cdot \cos(x)$$
+
+### Integral Teórica
+
+$$\int \sin^2(x) \, dx = \frac{1}{2} \cdot \left(x - \frac{\sin(2x)}{2}\right) + C$$
+
+---
+
+## Ejemplo 2: $f(g(x)) = \sin(x^2)$
+
+En esta función, la función seno es la externa, y el término cuadrático $x^2$ es la interna:
+* **Función externa:** $f(u) = \sin(u)$
+* **Función interna:** $g(x) = x^2$
+
+### Código
+
+```python
+def funcion_compuesta_2(x):
     return np.sin(x**2)
 ```
 
 ```python
-f_compuesta = funcion_compuesta(x)
-df_compuesta = derivada(f_compuesta)
-sf_compuesta = antiderivada(f_compuesta)
+f_compuesta_2 = funcion_compuesta_2(x)
+df_compuesta_2 = derivada(f_compuesta_2)
+sf_compuesta_2 = antiderivada(f_compuesta_2)
 
 plt.ylim(-5, 5)
 
 visualizacion(
-    f_compuesta,
-    df_compuesta,
-    sf_compuesta
+    f_compuesta_2,
+    df_compuesta_2,
+    sf_compuesta_2
 )
 ```
 
----
+### Derivada Teórica
 
-## Derivada Teórica
-
-Si:
-
-```text
-f(x) = sin(x²)
-```
-
-Entonces, aplicando la **Regla de la Cadena**:
+Aplicando la **Regla de la Cadena**:
 
 $$\frac{d}{dx}\sin(x^2) = \cos(x^2) \cdot 2x$$
 
 ### 🧠 Pregunta clásica: ¿Por qué aparece el $2x$?
 Porque la regla de la cadena establece que la derivada de una función compuesta es la derivada de la función externa evaluada en la interna, multiplicada por la derivada de la función interna:
-1. **Función externa:** $g(u) = \sin(u) \implies g'(u) = \cos(u)$
-2. **Función interna:** $u(x) = x^2 \implies u'(x) = 2x$
+1. **Función externa:** $f'(u) = \cos(u)$
+2. **Función interna:** $g'(x) = 2x$
 3. **Multiplicación:** $\cos(x^2) \cdot 2x$
+
+### Integral Teórica
+
+Esta integral no tiene antiderivada expresable en funciones elementales (se le conoce como Integral de Fresnel), pero se puede representar usando series de potencias:
+
+$$\int \sin(x^2) \, dx = \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n+1)!} \cdot \frac{x^{4n+3}}{4n+3} + C$$
 
 ---
 
