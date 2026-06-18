@@ -3,7 +3,8 @@
 
 **Grupo:** GDG Mexico Python Study Group
 **Repo:** https://github.com/krvax/GDG-Mexico-Python-Study-Group
-**Referencia:** https://docs.google.com/presentation/d/1LLUT54D54F5dmebx4lL0TbcFhwiiGBq5aqkIk9aoYow/edit
+**Diapositivas:** https://docs.google.com/presentation/d/1LLUT54D54F5dmebx4lL0TbcFhwiiGBq5aqkIk9aoYow/edit?slide=id.g3e100d87e92_1_132#slide=id.g3e100d87e92_1_132
+**Colab de la Clase:** https://colab.research.google.com/drive/175Qx9sS0usDdJScuh1zgCSj1Nvtttmv3?usp=sharing
 
 ---
 
